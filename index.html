@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Natural Language Test Automation — Live Showcase & Reports</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --success: #10b981;
+            --danger: #ef4444;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.5;
+            padding: 32px 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: white;
+            padding: 40px 32px;
+            border-radius: 16px;
+            margin-bottom: 32px;
+            box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.2);
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        h1 { font-size: 32px; font-weight: 800; margin-bottom: 8px; }
+        .subtitle { font-size: 16px; opacity: 0.9; max-width: 800px; }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        .metric-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+        .metric-label {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+        }
+        .metric-val {
+            font-size: 28px;
+            font-weight: 800;
+            margin-top: 4px;
+            color: var(--text-main);
+        }
+        .metric-val.green { color: var(--success); }
+        .metric-val.blue { color: var(--primary); }
+        .nav-tabs {
+            display: flex;
+            gap: 8px;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 24px;
+            overflow-x: auto;
+        }
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 12px 20px;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .tab-btn:hover { color: var(--primary); }
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            margin-top: 16px;
+        }
+        th {
+            background: #f1f5f9;
+            padding: 12px 16px;
+            color: var(--text-muted);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 11px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            color: #334155;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 9999px;
+            font-size: 12px;
+            font-weight: 700;
+            color: white;
+            background: var(--success);
+        }
+        .btn-view {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: background 0.15s;
+        }
+        .btn-view:hover { background: var(--primary-dark); }
+        .screenshot-box {
+            margin-top: 16px;
+            text-align: center;
+            background: #0f172a;
+            padding: 16px;
+            border-radius: 8px;
+        }
+        .screenshot-box img {
+            max-width: 100%;
+            max-height: 480px;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        }
+        .code-box {
+            background: #0f172a;
+            color: #f8fafc;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+        footer {
+            margin-top: 48px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 13px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="badge">🚀 Production Build & Validation</div>
+            <h1>AI Natural Language Test Automation</h1>
+            <p class="subtitle">
+                Accepts plain-English browser test cases, translates them into strictly validated JSON action schemas via LLMs, executes them through Playwright, and records verifiable PASS/FAIL audit results.
+            </p>
+        </header>
+
+        <!-- Metrics -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-label">Automated Tests</div>
+                <div class="metric-val green">101 / 101</div>
+                <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">100% Pass Rate across unit & integration</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Security Gate</div>
+                <div class="metric-val blue">Zero Code Eval</div>
+                <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">No eval / exec / shell injection</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Verified Demonstrations</div>
+                <div class="metric-val">3 Sites</div>
+                <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">PHPTravels, BooksToScrape, Example Domain</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Locator Strategy</div>
+                <div class="metric-val blue">Semantic ARIA</div>
+                <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">Role → Label → Text with Ambiguity Guard</div>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="switchTab('phptravels')">1. PHPTravels Demo</button>
+            <button class="tab-btn" onclick="switchTab('bookstore')">2. BooksToScrape Demo</button>
+            <button class="tab-btn" onclick="switchTab('example')">3. Example Domain Demo</button>
+            <button class="tab-btn" onclick="switchTab('architecture')">Architecture & Security</button>
+            <button class="tab-btn" onclick="switchTab('all-reports')">All Reports & Evidence</button>
+        </div>
+
+        <!-- TAB 1: PHPTravels -->
+        <div id="tab-phptravels" class="tab-content active">
+            <div class="card">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;">
+                    <div>
+                        <span class="status-badge">PASS</span>
+                        <h2 style="font-size:20px;margin-top:8px;">PHPTravels Live Travel Booking Demo</h2>
+                        <p style="color:var(--text-muted);font-size:14px;margin-top:4px;">
+                            <strong>Instruction:</strong> "Open the PHPTravels demo page and verify the title contains 'PHPTRAVELS' and the demo access section is visible"
+                        </p>
+                        <p style="color:var(--text-muted);font-size:13px;margin-top:2px;">
+                            <strong>URL:</strong> <a href="https://phptravels.com/demo" target="_blank" style="color:var(--primary);">https://phptravels.com/demo</a> | <strong>Duration:</strong> 10.83s
+                        </p>
+                    </div>
+                    <div>
+                        <a href="reports/report_9e95e040-276b-4c28-8ebe-d58f9812a541.html" target="_blank" class="btn-view">Open Standalone HTML Report ↗</a>
+                    </div>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width:40px;">#</th>
+                            <th style="width:90px;">Status</th>
+                            <th style="width:140px;">Action</th>
+                            <th>Description</th>
+                            <th>Target</th>
+                            <th style="width:100px;">Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><span class="status-badge">PASS</span></td>
+                            <td><strong>navigate</strong></td>
+                            <td>Navigate to the target website</td>
+                            <td><code>https://phptravels.com/demo</code></td>
+                            <td>4,526 ms</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><span class="status-badge">PASS</span></td>
+                            <td><strong>assert_title</strong></td>
+                            <td>Verify page title contains 'PHPTRAVELS'</td>
+                            <td>Expected: <code>PHPTRAVELS</code></td>
+                            <td>81 ms</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><span class="status-badge">PASS</span></td>
+                            <td><strong>assert_visible</strong></td>
+                            <td>Verify 'Get your demo access' section is visible</td>
+                            <td><code>heading: Get your demo access</code></td>
+                            <td>1,005 ms</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><span class="status-badge">PASS</span></td>
+                            <td><strong>screenshot</strong></td>
+                            <td>Capture final state screenshot as evidence</td>
+                            <td>Evidence PNG</td>
+                            <td>563 ms</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4 style="margin-top:24px;font-size:15px;color:var(--text-main);">📸 Live Visual Evidence Captured:</h4>
+                <div class="screenshot-box">
+                    <img src="reports/screenshots/9e95e040-276b-4c28-8ebe-d58f9812a541_final_state.png" alt="PHPTravels Demo Screenshot" />
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: BooksToScrape -->
+        <div id="tab-bookstore" class="tab-content">
+            <div class="card">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;">
+                    <div>
+                        <span class="status-badge">PASS</span>
+                        <h2 style="font-size:20px;margin-top:8px;">BooksToScrape E-Commerce Flow</h2>
+                        <p style="color:var(--text-muted);font-size:14px;margin-top:4px;">
+                            <strong>Instruction:</strong> "Open the bookstore catalogue and verify the page title contains 'All products' and books are visible"
+                        </p>
+                        <p style="color:var(--text-muted);font-size:13px;margin-top:2px;">
+                            <strong>URL:</strong> <a href="https://books.toscrape.com" target="_blank" style="color:var(--primary);">https://books.toscrape.com</a> | <strong>Duration:</strong> 26.94s
+                        </p>
+                    </div>
+                    <div>
+                        <a href="reports/report_852c68ce-50d2-486b-98ee-c968b880fde8.html" target="_blank" class="btn-view">Open Standalone HTML Report ↗</a>
+                    </div>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width:40px;">#</th>
+                            <th style="width:90px;">Status</th>
+                            <th style="width:140px;">Action</th>
+                            <th>Description</th>
+                            <th>Target</th>
+                            <th style="width:100px;">Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><span class="status-badge">PASS</span></td>
+                            <td><strong>navigate</strong></td>
+                            <td>Navigate to bookstore catalogue</td>
+                            <td><code>https://books.toscrape.com</code></td>
+                            <td>5,908 ms</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><span class="status-badge">PASS</span></td>
+                            <td><strong>assert_title</strong></td>
+                            <td>Verify page title contains 'All products'</td>
+                            <td>Expected: <code>All products</code></td>
+                            <td>282 ms</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><span class="status-badge">PASS</span></td>
+                            <td><strong>assert_visible</strong></td>
+                            <td>Verify catalog product body is visible</td>
+                            <td><code>css: body</code></td>
+                            <td>9,269 ms</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><span class="status-badge">PASS</span></td>
+                            <td><strong>screenshot</strong></td>
+                            <td>Capture final state screenshot</td>
+                            <td>Evidence PNG</td>
+                            <td>719 ms</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4 style="margin-top:24px;font-size:15px;color:var(--text-main);">📸 Live Visual Evidence Captured:</h4>
+                <div class="screenshot-box">
+                    <img src="reports/screenshots/852c68ce-50d2-486b-98ee-c968b880fde8_final_state.png" alt="BooksToScrape Screenshot" />
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: Example Domain -->
+        <div id="tab-example" class="tab-content">
+            <div class="card">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;">
+                    <div>
+                        <span class="status-badge">PASS</span>
+                        <h2 style="font-size:20px;margin-top:8px;">Example Domain Smoke Test</h2>
+                        <p style="color:var(--text-muted);font-size:14px;margin-top:4px;">
+                            <strong>Instruction:</strong> "Open the website and verify its title contains 'Example Domain' and header is visible"
+                        </p>
+                        <p style="color:var(--text-muted);font-size:13px;margin-top:2px;">
+                            <strong>URL:</strong> <a href="https://example.com" target="_blank" style="color:var(--primary);">https://example.com</a> | <strong>Duration:</strong> 27.28s
+                        </p>
+                    </div>
+                    <div>
+                        <a href="reports/report_12e314e8-9ebf-4696-b85f-691ca7a516dc.html" target="_blank" class="btn-view">Open Standalone HTML Report ↗</a>
+                    </div>
+                </div>
+
+                <div class="screenshot-box" style="margin-top:20px;">
+                    <img src="reports/screenshots/12e314e8-9ebf-4696-b85f-691ca7a516dc_final_state.png" alt="Example Domain Screenshot" />
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: Architecture -->
+        <div id="tab-architecture" class="tab-content">
+            <div class="card">
+                <h2 style="font-size:20px;margin-bottom:12px;">Architecture: 9 Decoupled Verifiable Components</h2>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));gap:16px;">
+                    <div style="background:#f8fafc;padding:16px;border-radius:8px;border:1px solid var(--border);">
+                        <strong style="color:var(--primary);">1. TestCaseInput</strong>
+                        <p style="font-size:13px;color:var(--text-muted);margin-top:4px;">Schema validation on inputs; restricts protocol to HTTP/HTTPS; registers secret tokens for log masking.</p>
+                    </div>
+                    <div style="background:#f8fafc;padding:16px;border-radius:8px;border:1px solid var(--border);">
+                        <strong style="color:var(--primary);">2. LLMPlanner</strong>
+                        <p style="font-size:13px;color:var(--text-muted);margin-top:4px;">Emits structured JSON TestPlans adhering strictly to Pydantic schemas. Flags missing credentials instead of hallucinating logins.</p>
+                    </div>
+                    <div style="background:#f8fafc;padding:16px;border-radius:8px;border:1px solid var(--border);">
+                        <strong style="color:var(--primary);">3. PlanValidator</strong>
+                        <p style="font-size:13px;color:var(--text-muted);margin-top:4px;">Pre-execution gate checking action allowlists, required parameters, and step limits (max 30).</p>
+                    </div>
+                    <div style="background:#f8fafc;padding:16px;border-radius:8px;border:1px solid var(--border);">
+                        <strong style="color:var(--primary);">4. BrowserExecutor</strong>
+                        <p style="font-size:13px;color:var(--text-muted);margin-top:4px;">Coordinates Playwright execution, enforces timeouts, captures millisecond durations and failure screenshots.</p>
+                    </div>
+                    <div style="background:#f8fafc;padding:16px;border-radius:8px;border:1px solid var(--border);">
+                        <strong style="color:var(--primary);">5. SmartLocator</strong>
+                        <p style="font-size:13px;color:var(--text-muted);margin-top:4px;">Prioritizes ARIA role, label, and test-ID. Halts with <code>LocatorAmbiguityError</code> if multiple elements match.</p>
+                    </div>
+                    <div style="background:#f8fafc;padding:16px;border-radius:8px;border:1px solid var(--border);">
+                        <strong style="color:var(--primary);">6. AssertionEngine</strong>
+                        <p style="font-size:13px;color:var(--text-muted);margin-top:4px;">Strict verification of visibility, text equality, title, and URL. Never reports PASS on assertion failure.</p>
+                    </div>
+                    <div style="background:#f8fafc;padding:16px;border-radius:8px;border:1px solid var(--border);">
+                        <strong style="color:var(--primary);">7. ResultReporter</strong>
+                        <p style="font-size:13px;color:var(--text-muted);margin-top:4px;">Produces structured JSON, standalone HTML with base64 screenshots, and formatted Rich terminal summaries.</p>
+                    </div>
+                    <div style="background:#f8fafc;padding:16px;border-radius:8px;border:1px solid var(--border);">
+                        <strong style="color:var(--primary);">8. ConfigManager</strong>
+                        <p style="font-size:13px;color:var(--text-muted);margin-top:4px;">Centralized settings loading via Pydantic from .env and environment variables.</p>
+                    </div>
+                    <div style="background:#f8fafc;padding:16px;border-radius:8px;border:1px solid var(--border);">
+                        <strong style="color:var(--primary);">9. SecurityManager</strong>
+                        <p style="font-size:13px;color:var(--text-muted);margin-top:4px;">Guarantees zero eval/exec, blocks disallowed schemes (file://, javascript:), and masks credentials.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: All Reports -->
+        <div id="tab-all-reports" class="tab-content">
+            <div class="card">
+                <h2 style="font-size:20px;margin-bottom:12px;">Saved Execution Reports & JSON Artifacts</h2>
+                <p style="font-size:14px;color:var(--text-muted);margin-bottom:16px;">
+                    Every test run automatically generates both a standalone interactive HTML report and a structured JSON payload for CI/CD audit trails:
+                </p>
+                <ul>
+                    <li style="margin-bottom:12px;">
+                        <strong>PHPTravels Demo Flow:</strong> 
+                        <a href="reports/report_9e95e040-276b-4c28-8ebe-d58f9812a541.html" target="_blank" style="color:var(--primary);">HTML Report</a> | 
+                        <a href="reports/report_9e95e040-276b-4c28-8ebe-d58f9812a541.json" target="_blank" style="color:var(--primary);">Raw JSON Data</a>
+                    </li>
+                    <li style="margin-bottom:12px;">
+                        <strong>BooksToScrape E-Commerce:</strong> 
+                        <a href="reports/report_852c68ce-50d2-486b-98ee-c968b880fde8.html" target="_blank" style="color:var(--primary);">HTML Report</a> | 
+                        <a href="reports/report_852c68ce-50d2-486b-98ee-c968b880fde8.json" target="_blank" style="color:var(--primary);">Raw JSON Data</a>
+                    </li>
+                    <li style="margin-bottom:12px;">
+                        <strong>Example Domain Smoke Test:</strong> 
+                        <a href="reports/report_12e314e8-9ebf-4696-b85f-691ca7a516dc.html" target="_blank" style="color:var(--primary);">HTML Report</a> | 
+                        <a href="reports/report_12e314e8-9ebf-4696-b85f-691ca7a516dc.json" target="_blank" style="color:var(--primary);">Raw JSON Data</a>
+                    </li>
+                    <li style="margin-bottom:12px;">
+                        <strong>Local Integration Test Page:</strong> 
+                        <a href="sample_page.html" target="_blank" style="color:var(--primary);">View Test Fixture Page</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <footer>
+            AI Natural Language Test Automation · Built with Python 3.12, Playwright, Pydantic & Rich
+        </footer>
+    </div>
+
+    <script>
+        function switchTab(name) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById('tab-' + name).classList.add('active');
+        }
+    </script>
+</body>
+</html>
+
