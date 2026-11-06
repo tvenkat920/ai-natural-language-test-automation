@@ -1,5 +1,9 @@
 [build]
-  publish = "."
+  publish = "dist_netlify"
+  command = "echo 'Static test automation reports and showcase ready'"
+
+[build.environment]
+  PYTHON_VERSION = "3.11.9"
 
 [[headers]]
   for = "/*"
