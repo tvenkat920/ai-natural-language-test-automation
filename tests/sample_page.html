@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Test Automation Sample Page</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
+            padding: 32px 24px;
+        }
+        header {
+            background: #1e40af;
+            color: white;
+            padding: 20px 32px;
+            border-radius: 12px;
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        header h1 { font-size: 22px; font-weight: 700; }
+        header p { font-size: 14px; opacity: 0.8; margin-top: 4px; }
+        nav {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 12px 24px;
+            margin-bottom: 24px;
+            display: flex;
+            gap: 24px;
+        }
+        nav a {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        nav a:hover { text-decoration: underline; }
+        .card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        h2 { font-size: 18px; font-weight: 700; color: #0f172a; margin-bottom: 16px; }
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 6px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select,
+        textarea {
+            width: 100%;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 10px 14px;
+            font-size: 14px;
+            margin-bottom: 16px;
+            outline: none;
+            transition: border-color 0.15s;
+            background: #f8fafc;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: #3b82f6;
+            background: white;
+        }
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 22px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        button:hover { background: #1d4ed8; }
+        button.secondary {
+            background: #64748b;
+        }
+        button.secondary:hover { background: #475569; }
+        button.danger {
+            background: #dc2626;
+        }
+        .row { display: flex; gap: 16px; }
+        .row > * { flex: 1; }
+        #login-result, #search-result, #form-result {
+            margin-top: 12px;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 14px;
+            display: none;
+        }
+        .success { background: #d1fae5; color: #065f46; border: 1px solid #a7f3d0; }
+        .error { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+        .info { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
+        #products-section { display: none; }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .product-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            background: #f8fafc;
+        }
+        .product-card .name { font-weight: 600; font-size: 14px; color: #0f172a; }
+        .product-card .price { color: #2563eb; font-size: 15px; margin-top: 6px; }
+        .badge {
+            display: inline-block;
+            background: #dcfce7;
+            color: #15803d;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 9999px;
+            margin-top: 6px;
+        }
+        #counter-value { font-size: 48px; font-weight: 800; color: #1e40af; text-align: center; padding: 16px; }
+        .checkbox-row { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+        .checkbox-row input[type="checkbox"] { width: auto; margin-bottom: 0; }
+        footer {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 13px;
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid #e2e8f0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header role="banner">
+        <div>
+            <h1>AI Test Automation Sample Page</h1>
+            <p>A local reference page for integration testing — covers forms, navigation, assertions, and interactions.</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav role="navigation" aria-label="Main navigation">
+        <a href="#login-section">Login</a>
+        <a href="#search-section">Search</a>
+        <a href="#form-section">Form</a>
+        <a href="#counter-section">Counter</a>
+        <a href="#products-section">Products</a>
+    </nav>
+
+    <!-- === LOGIN SECTION === -->
+    <section class="card" id="login-section" aria-label="Login form">
+        <h2>Login</h2>
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username" autocomplete="username" />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password" />
+
+        <button type="button" aria-label="Login" onclick="handleLogin()">Login</button>
+        <button type="button" class="secondary" onclick="clearLogin()" style="margin-left:8px;">Clear</button>
+
+        <div id="login-result" role="alert"></div>
+    </section>
+
+    <!-- === SEARCH SECTION === -->
+    <section class="card" id="search-section" aria-label="Product search">
+        <h2>Search</h2>
+        <label for="search-input">Search Products</label>
+        <input type="text" id="search-input" name="search" placeholder="Search for products..." />
+        <button type="button" aria-label="Search" onclick="handleSearch()">Search</button>
+
+        <div id="search-result" role="status"></div>
+        <div id="products-section">
+            <div class="product-grid" id="product-grid"></div>
+        </div>
+    </section>
+
+    <!-- === FORM SECTION === -->
+    <section class="card" id="form-section" aria-label="Contact form">
+        <h2>Contact Form</h2>
+        <div class="row">
+            <div>
+                <label for="first-name">First Name</label>
+                <input type="text" id="first-name" placeholder="First name" />
+            </div>
+            <div>
+                <label for="last-name">Last Name</label>
+                <input type="text" id="last-name" placeholder="Last name" />
+            </div>
+        </div>
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="you@example.com" />
+
+        <label for="country">Country</label>
+        <select id="country" aria-label="Select country">
+            <option value="">-- Select Country --</option>
+            <option value="us">United States</option>
+            <option value="uk">United Kingdom</option>
+            <option value="in">India</option>
+            <option value="au">Australia</option>
+            <option value="ca">Canada</option>
+        </select>
+
+        <label for="message">Message</label>
+        <textarea id="message" rows="3" placeholder="Your message here..."></textarea>
+
+        <div class="checkbox-row">
+            <input type="checkbox" id="subscribe" name="subscribe" />
+            <label for="subscribe" style="margin-bottom:0;">Subscribe to newsletter</label>
+        </div>
+        <div class="checkbox-row">
+            <input type="checkbox" id="terms" name="terms" />
+            <label for="terms" style="margin-bottom:0;">I agree to the terms and conditions</label>
+        </div>
+
+        <button type="button" onclick="handleFormSubmit()" style="margin-top:8px;">Submit Form</button>
+        <div id="form-result" role="alert"></div>
+    </section>
+
+    <!-- === COUNTER SECTION === -->
+    <section class="card" id="counter-section" aria-label="Interactive counter">
+        <h2>Interactive Counter</h2>
+        <div id="counter-value" aria-live="polite" aria-label="Counter value">0</div>
+        <div style="display:flex;justify-content:center;gap:16px;margin-top:16px;">
+            <button type="button" aria-label="Decrement counter" onclick="changeCounter(-1)">− Decrement</button>
+            <button type="button" class="secondary" aria-label="Reset counter" onclick="resetCounter()">Reset</button>
+            <button type="button" aria-label="Increment counter" onclick="changeCounter(1)">Increment +</button>
+        </div>
+        <p id="counter-status" style="text-align:center;color:#64748b;font-size:13px;margin-top:12px;min-height:20px;"></p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>AI Natural Language Test Automation Sample Page · For integration testing purposes only</p>
+    </footer>
+
+    <script>
+        const VALID_CREDENTIALS = { "admin": "admin123", "user": "password", "demo": "demo" };
+        const PRODUCTS = [
+            { name: "Laptop Pro", price: "$999", category: "Electronics" },
+            { name: "Wireless Mouse", price: "$29", category: "Electronics" },
+            { name: "Notebook Set", price: "$12", category: "Stationery" },
+            { name: "Coffee Mug", price: "$8", category: "Kitchen" },
+            { name: "USB-C Hub", price: "$45", category: "Electronics" },
+            { name: "Desk Lamp", price: "$34", category: "Furniture" },
+        ];
+        let counter = 0;
+
+        function handleLogin() {
+            const user = document.getElementById("username").value.trim();
+            const pass = document.getElementById("password").value.trim();
+            const result = document.getElementById("login-result");
+            if (!user || !pass) {
+                show(result, "Please enter both username and password.", "error");
+                return;
+            }
+            if (VALID_CREDENTIALS[user] === pass) {
+                show(result, `✓ Welcome, ${user}! You have successfully logged in.`, "success");
+            } else {
+                show(result, "✗ Invalid credentials. Try admin/admin123, user/password, or demo/demo.", "error");
+            }
+        }
+
+        function clearLogin() {
+            document.getElementById("username").value = "";
+            document.getElementById("password").value = "";
+            document.getElementById("login-result").style.display = "none";
+        }
+
+        function handleSearch() {
+            const q = document.getElementById("search-input").value.trim().toLowerCase();
+            const result = document.getElementById("search-result");
+            const section = document.getElementById("products-section");
+            const grid = document.getElementById("product-grid");
+            if (!q) {
+                show(result, "Please enter a search term.", "info");
+                section.style.display = "none";
+                return;
+            }
+            const matches = PRODUCTS.filter(p =>
+                p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q)
+            );
+            grid.innerHTML = matches.length
+                ? matches.map(p => `<div class="product-card"><div class="name">${p.name}</div><div class="price">${p.price}</div><span class="badge">${p.category}</span></div>`).join("")
+                : `<p style="color:#64748b;">No products found for "${q}".</p>`;
+            show(result, `Found ${matches.length} result(s) for "${q}".`, matches.length ? "success" : "info");
+            section.style.display = "block";
+        }
+
+        function handleFormSubmit() {
+            const firstName = document.getElementById("first-name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const country = document.getElementById("country").value;
+            const terms = document.getElementById("terms").checked;
+            const result = document.getElementById("form-result");
+            if (!firstName || !email) {
+                show(result, "First name and email are required.", "error");
+                return;
+            }
+            if (!country) {
+                show(result, "Please select a country.", "error");
+                return;
+            }
+            if (!terms) {
+                show(result, "You must agree to the terms and conditions.", "error");
+                return;
+            }
+            show(result, `✓ Form submitted successfully for ${firstName} (${email}).`, "success");
+        }
+
+        function changeCounter(delta) {
+            counter += delta;
+            document.getElementById("counter-value").textContent = counter;
+            const status = document.getElementById("counter-status");
+            if (counter > 0) status.textContent = "Counter is positive.";
+            else if (counter < 0) status.textContent = "Counter is negative.";
+            else status.textContent = "Counter is at zero.";
+        }
+
+        function resetCounter() {
+            counter = 0;
+            document.getElementById("counter-value").textContent = "0";
+            document.getElementById("counter-status").textContent = "Counter reset.";
+        }
+
+        function show(el, msg, type) {
+            el.textContent = msg;
+            el.className = type;
+            el.style.display = "block";
+        }
+    </script>
+</body>
+</html>
+

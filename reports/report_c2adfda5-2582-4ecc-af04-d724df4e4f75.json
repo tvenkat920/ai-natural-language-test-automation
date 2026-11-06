@@ -1,0 +1,56 @@
+{
+  "run_id": "c2adfda5-2582-4ecc-af04-d724df4e4f75",
+  "instruction": "Verify a non-existent element is visible",
+  "base_url": "http://127.0.0.1:59406/sample_page.html",
+  "status": "FAIL",
+  "start_time": "2026-11-06T14:44:03.779947",
+  "end_time": "2026-11-06T14:44:15.150055",
+  "duration_sec": 11.371010800008662,
+  "total_steps": 3,
+  "passed_steps": 1,
+  "failed_steps": 1,
+  "steps": [
+    {
+      "step_number": 1,
+      "action": "navigate",
+      "description": "Open page",
+      "status": "PASS",
+      "duration_ms": 54.80119999265298,
+      "target_info": null,
+      "input_value": null,
+      "screenshot_path": null,
+      "error_message": null,
+      "assertion_details": null
+    },
+    {
+      "step_number": 2,
+      "action": "assert_visible",
+      "description": "Assert non-existent element is visible",
+      "status": "FAIL",
+      "duration_ms": 10195.662799989805,
+      "target_info": "css:#this-element-does-not-exist",
+      "input_value": null,
+      "screenshot_path": "reports\\screenshots\\fail_c2adfda5-2582-4ecc-af04-d724df4e4f75_step_2.png",
+      "error_message": "Element Not Found: Element '#this-element-does-not-exist' not found using strategy 'css' within 10000ms.",
+      "assertion_details": null
+    },
+    {
+      "step_number": 3,
+      "action": "screenshot",
+      "description": "Screenshot",
+      "status": "SKIPPED",
+      "duration_ms": 0.0,
+      "target_info": null,
+      "input_value": null,
+      "screenshot_path": null,
+      "error_message": "Skipped due to earlier step failure.",
+      "assertion_details": null
+    }
+  ],
+  "error_message": "Element Not Found: Element '#this-element-does-not-exist' not found using strategy 'css' within 10000ms.",
+  "clarification_prompt": null,
+  "screenshots": [
+    "reports\\screenshots\\fail_c2adfda5-2582-4ecc-af04-d724df4e4f75_step_2.png"
+  ],
+  "metadata": {}
+}

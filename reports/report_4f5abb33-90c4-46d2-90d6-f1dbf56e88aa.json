@@ -1,0 +1,95 @@
+{
+  "run_id": "4f5abb33-90c4-46d2-90d6-f1dbf56e88aa",
+  "instruction": "Log in with wrong credentials and verify error message",
+  "base_url": "http://127.0.0.1:60133/sample_page.html",
+  "status": "PASS",
+  "start_time": "2026-11-06T14:41:39.352948",
+  "end_time": "2026-11-06T14:41:40.660043",
+  "duration_sec": 1.3071044000098482,
+  "total_steps": 6,
+  "passed_steps": 6,
+  "failed_steps": 0,
+  "steps": [
+    {
+      "step_number": 1,
+      "action": "navigate",
+      "description": "Open page",
+      "status": "PASS",
+      "duration_ms": 37.559499964118004,
+      "target_info": null,
+      "input_value": null,
+      "screenshot_path": null,
+      "error_message": null,
+      "assertion_details": null
+    },
+    {
+      "step_number": 2,
+      "action": "fill",
+      "description": "Enter wrong username",
+      "status": "PASS",
+      "duration_ms": 149.97919998131692,
+      "target_info": "label:Username",
+      "input_value": "wrong_user",
+      "screenshot_path": null,
+      "error_message": null,
+      "assertion_details": null
+    },
+    {
+      "step_number": 3,
+      "action": "fill",
+      "description": "Enter wrong password",
+      "status": "PASS",
+      "duration_ms": 22.654099971987307,
+      "target_info": "label:Password",
+      "input_value": "wrong_pass",
+      "screenshot_path": null,
+      "error_message": null,
+      "assertion_details": null
+    },
+    {
+      "step_number": 4,
+      "action": "click",
+      "description": "Click Login",
+      "status": "PASS",
+      "duration_ms": 123.93590004649013,
+      "target_info": "role:Login",
+      "input_value": null,
+      "screenshot_path": null,
+      "error_message": null,
+      "assertion_details": null
+    },
+    {
+      "step_number": 5,
+      "action": "assert_visible",
+      "description": "Verify error message is visible",
+      "status": "PASS",
+      "duration_ms": 69.95400000596419,
+      "target_info": "text:Invalid credentials",
+      "input_value": null,
+      "screenshot_path": null,
+      "error_message": null,
+      "assertion_details": {
+        "expected": "visible",
+        "actual": "visible"
+      }
+    },
+    {
+      "step_number": 6,
+      "action": "screenshot",
+      "description": "Screenshot",
+      "status": "PASS",
+      "duration_ms": 104.15259998990223,
+      "target_info": null,
+      "input_value": null,
+      "screenshot_path": "reports\\screenshots\\4f5abb33-90c4-46d2-90d6-f1dbf56e88aa_step_6.png",
+      "error_message": null,
+      "assertion_details": null
+    }
+  ],
+  "error_message": null,
+  "clarification_prompt": null,
+  "screenshots": [
+    "reports\\screenshots\\4f5abb33-90c4-46d2-90d6-f1dbf56e88aa_step_6.png"
+  ],
+  "metadata": {}
+}

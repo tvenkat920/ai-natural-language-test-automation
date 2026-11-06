@@ -1,0 +1,60 @@
+{
+  "run_id": "55f46140-ef23-4f81-b5d2-d82033204271",
+  "instruction": "Verify the page title is 'This Title Does Not Exist XYZ987'",
+  "base_url": "http://127.0.0.1:60133/sample_page.html",
+  "status": "FAIL",
+  "start_time": "2026-11-06T14:41:42.450612",
+  "end_time": "2026-11-06T14:41:44.124182",
+  "duration_sec": 1.6755890000495128,
+  "total_steps": 3,
+  "passed_steps": 1,
+  "failed_steps": 1,
+  "steps": [
+    {
+      "step_number": 1,
+      "action": "navigate",
+      "description": "Open page",
+      "status": "PASS",
+      "duration_ms": 140.79630002379417,
+      "target_info": null,
+      "input_value": null,
+      "screenshot_path": null,
+      "error_message": null,
+      "assertion_details": null
+    },
+    {
+      "step_number": 2,
+      "action": "assert_title",
+      "description": "Assert wrong title (intentional FAIL)",
+      "status": "FAIL",
+      "duration_ms": 84.584399999585,
+      "target_info": null,
+      "input_value": null,
+      "screenshot_path": "reports\\screenshots\\fail_55f46140-ef23-4f81-b5d2-d82033204271_step_2.png",
+      "error_message": "Title assertion failed. Expected 'This Title Does Not Exist XYZ987', found 'AI Test Automation Sample Page'.",
+      "assertion_details": {
+        "expected": "This Title Does Not Exist XYZ987",
+        "actual": "AI Test Automation Sample Page",
+        "type": "assert_title"
+      }
+    },
+    {
+      "step_number": 3,
+      "action": "screenshot",
+      "description": "Screenshot",
+      "status": "SKIPPED",
+      "duration_ms": 0.0,
+      "target_info": null,
+      "input_value": null,
+      "screenshot_path": null,
+      "error_message": "Skipped due to earlier step failure.",
+      "assertion_details": null
+    }
+  ],
+  "error_message": "Title assertion failed. Expected 'This Title Does Not Exist XYZ987', found 'AI Test Automation Sample Page'.",
+  "clarification_prompt": null,
+  "screenshots": [
+    "reports\\screenshots\\fail_55f46140-ef23-4f81-b5d2-d82033204271_step_2.png"
+  ],
+  "metadata": {}
+}

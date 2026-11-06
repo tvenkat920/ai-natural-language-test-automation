@@ -1,0 +1,42 @@
+{
+  "test_name": "PHPTravels Live Demo Smoke Test",
+  "instruction": "Open the PHPTravels demo page and verify the title contains 'PHPTRAVELS' and the demo access section is visible",
+  "base_url": "https://phptravels.com/demo",
+  "notes": "Verified against current https://phptravels.com/demo. Does not rely on deprecated static demo credentials.",
+  "expected_plan": {
+    "title": "Navigation and Visibility Test",
+    "base_url": "https://phptravels.com/demo",
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "navigate",
+        "description": "Navigate to the target website",
+        "url": "https://phptravels.com/demo"
+      },
+      {
+        "step_number": 2,
+        "action": "assert_title",
+        "description": "Verify the page title contains 'PHPTRAVELS'",
+        "expected_title": "PHPTRAVELS"
+      },
+      {
+        "step_number": 3,
+        "action": "assert_visible",
+        "description": "Verify 'Get your demo access' section is visible",
+        "target": {
+          "strategy": "auto",
+          "value": "Get your demo access",
+          "role": "heading",
+          "exact": false
+        }
+      },
+      {
+        "step_number": 4,
+        "action": "screenshot",
+        "description": "Capture final state screenshot as evidence",
+        "screenshot_name": "final_state"
+      }
+    ]
+  }
+}
+

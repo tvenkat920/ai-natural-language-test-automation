@@ -1,0 +1,41 @@
+{
+  "test_name": "Generic Bookstore Catalogue Test (BooksToScrape)",
+  "instruction": "Open the bookstore catalogue and verify the page title contains 'All products' and books are visible",
+  "base_url": "https://books.toscrape.com",
+  "notes": "Demonstrates generic applicability to any website without codebase modifications or site-specific selectors.",
+  "expected_plan": {
+    "title": "Navigation and Visibility Test",
+    "base_url": "https://books.toscrape.com",
+    "steps": [
+      {
+        "step_number": 1,
+        "action": "navigate",
+        "description": "Navigate to the target website",
+        "url": "https://books.toscrape.com"
+      },
+      {
+        "step_number": 2,
+        "action": "assert_title",
+        "description": "Verify the page title contains 'All products'",
+        "expected_title": "All products"
+      },
+      {
+        "step_number": 3,
+        "action": "assert_visible",
+        "description": "Verify element 'body' is visible on the page",
+        "target": {
+          "strategy": "auto",
+          "value": "body",
+          "exact": false
+        }
+      },
+      {
+        "step_number": 4,
+        "action": "screenshot",
+        "description": "Capture final state screenshot as evidence",
+        "screenshot_name": "final_state"
+      }
+    ]
+  }
+}
+

@@ -1,0 +1,59 @@
+{
+  "run_id": "ba2bb53d-cc87-4a2a-9089-505c97ca3d9c",
+  "instruction": "Open the sample page and verify its title",
+  "base_url": "http://127.0.0.1:63680/sample_page.html",
+  "status": "PASS",
+  "start_time": "2026-11-06T15:52:54.295707",
+  "end_time": "2026-11-06T15:52:58.875537",
+  "duration_sec": 4.579710899968632,
+  "total_steps": 3,
+  "passed_steps": 3,
+  "failed_steps": 0,
+  "steps": [
+    {
+      "step_number": 1,
+      "action": "navigate",
+      "description": "Open sample page",
+      "status": "PASS",
+      "duration_ms": 819.4040000089444,
+      "target_info": null,
+      "input_value": null,
+      "screenshot_path": null,
+      "error_message": null,
+      "assertion_details": null
+    },
+    {
+      "step_number": 2,
+      "action": "assert_title",
+      "description": "Verify page title contains 'AI Test Automation'",
+      "status": "PASS",
+      "duration_ms": 120.94930000603199,
+      "target_info": null,
+      "input_value": null,
+      "screenshot_path": null,
+      "error_message": null,
+      "assertion_details": {
+        "expected": "AI Test Automation",
+        "actual": "AI Test Automation Sample Page"
+      }
+    },
+    {
+      "step_number": 3,
+      "action": "screenshot",
+      "description": "Evidence screenshot",
+      "status": "PASS",
+      "duration_ms": 194.2962000030093,
+      "target_info": null,
+      "input_value": null,
+      "screenshot_path": "reports\\screenshots\\ba2bb53d-cc87-4a2a-9089-505c97ca3d9c_nav_title.png",
+      "error_message": null,
+      "assertion_details": null
+    }
+  ],
+  "error_message": null,
+  "clarification_prompt": null,
+  "screenshots": [
+    "reports\\screenshots\\ba2bb53d-cc87-4a2a-9089-505c97ca3d9c_nav_title.png"
+  ],
+  "metadata": {}
+}
