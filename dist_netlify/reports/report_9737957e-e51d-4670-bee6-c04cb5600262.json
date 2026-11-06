@@ -1,0 +1,95 @@
+{
+  "run_id": "9737957e-e51d-4670-bee6-c04cb5600262",
+  "instruction": "Log in with admin credentials and verify success",
+  "base_url": "http://127.0.0.1:60133/sample_page.html",
+  "status": "PASS",
+  "start_time": "2026-11-06T14:41:37.152342",
+  "end_time": "2026-11-06T14:41:39.299025",
+  "duration_sec": 2.150450599961914,
+  "total_steps": 6,
+  "passed_steps": 6,
+  "failed_steps": 0,
+  "steps": [
+    {
+      "step_number": 1,
+      "action": "navigate",
+      "description": "Open page",
+      "status": "PASS",
+      "duration_ms": 41.55350005021319,
+      "target_info": null,
+      "input_value": null,
+      "screenshot_path": null,
+      "error_message": null,
+      "assertion_details": null
+    },
+    {
+      "step_number": 2,
+      "action": "fill",
+      "description": "Enter username",
+      "status": "PASS",
+      "duration_ms": 511.5720000467263,
+      "target_info": "label:Username",
+      "input_value": "admin",
+      "screenshot_path": null,
+      "error_message": null,
+      "assertion_details": null
+    },
+    {
+      "step_number": 3,
+      "action": "fill",
+      "description": "Enter password",
+      "status": "PASS",
+      "duration_ms": 138.25190003262833,
+      "target_info": "label:Password",
+      "input_value": "admin123",
+      "screenshot_path": null,
+      "error_message": null,
+      "assertion_details": null
+    },
+    {
+      "step_number": 4,
+      "action": "click",
+      "description": "Click Login button",
+      "status": "PASS",
+      "duration_ms": 357.0445000077598,
+      "target_info": "role:Login",
+      "input_value": null,
+      "screenshot_path": null,
+      "error_message": null,
+      "assertion_details": null
+    },
+    {
+      "step_number": 5,
+      "action": "assert_visible",
+      "description": "Verify success message is visible",
+      "status": "PASS",
+      "duration_ms": 81.41969999996945,
+      "target_info": "text:successfully logged in",
+      "input_value": null,
+      "screenshot_path": null,
+      "error_message": null,
+      "assertion_details": {
+        "expected": "visible",
+        "actual": "visible"
+      }
+    },
+    {
+      "step_number": 6,
+      "action": "screenshot",
+      "description": "Login success screenshot",
+      "status": "PASS",
+      "duration_ms": 129.7960999654606,
+      "target_info": null,
+      "input_value": null,
+      "screenshot_path": "reports\\screenshots\\9737957e-e51d-4670-bee6-c04cb5600262_login_success.png",
+      "error_message": null,
+      "assertion_details": null
+    }
+  ],
+  "error_message": null,
+  "clarification_prompt": null,
+  "screenshots": [
+    "reports\\screenshots\\9737957e-e51d-4670-bee6-c04cb5600262_login_success.png"
+  ],
+  "metadata": {}
+}

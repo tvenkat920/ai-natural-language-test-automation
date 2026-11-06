@@ -1,0 +1,56 @@
+{
+  "run_id": "5f87ca95-4d01-42cf-a749-1508737504a9",
+  "instruction": "Verify the page header is visible",
+  "base_url": "http://127.0.0.1:50061/sample_page.html",
+  "status": "FAIL",
+  "start_time": "2026-11-06T14:38:24.659393",
+  "end_time": "2026-11-06T14:38:38.529294",
+  "duration_sec": 13.87043160002213,
+  "total_steps": 3,
+  "passed_steps": 1,
+  "failed_steps": 1,
+  "steps": [
+    {
+      "step_number": 1,
+      "action": "navigate",
+      "description": "Open page",
+      "status": "PASS",
+      "duration_ms": 78.87160003883764,
+      "target_info": null,
+      "input_value": null,
+      "screenshot_path": null,
+      "error_message": null,
+      "assertion_details": null
+    },
+    {
+      "step_number": 2,
+      "action": "assert_visible",
+      "description": "Verify page heading is visible",
+      "status": "FAIL",
+      "duration_ms": 10145.369499980006,
+      "target_info": "role:banner",
+      "input_value": null,
+      "screenshot_path": "reports\\screenshots\\fail_5f87ca95-4d01-42cf-a749-1508737504a9_step_2.png",
+      "error_message": "Element Not Found: Element 'banner' not found using strategy 'role' within 10000ms.",
+      "assertion_details": null
+    },
+    {
+      "step_number": 3,
+      "action": "screenshot",
+      "description": "Screenshot",
+      "status": "SKIPPED",
+      "duration_ms": 0.0,
+      "target_info": null,
+      "input_value": null,
+      "screenshot_path": null,
+      "error_message": "Skipped due to earlier step failure.",
+      "assertion_details": null
+    }
+  ],
+  "error_message": "Element Not Found: Element 'banner' not found using strategy 'role' within 10000ms.",
+  "clarification_prompt": null,
+  "screenshots": [
+    "reports\\screenshots\\fail_5f87ca95-4d01-42cf-a749-1508737504a9_step_2.png"
+  ],
+  "metadata": {}
+}

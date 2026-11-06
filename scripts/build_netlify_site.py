@@ -29,3 +29,4 @@ if sample_html.exists():
     shutil.copy2(sample_html, DIST / "sample_page.html")
 
 print("Copied reports and evidence to dist_netlify/")
+

@@ -1,0 +1,60 @@
+{
+  "run_id": "65c4c326-c2ab-44fd-b98c-d62e69754d22",
+  "instruction": "Verify the page title is 'This Title Does Not Exist XYZ987'",
+  "base_url": "http://127.0.0.1:50061/sample_page.html",
+  "status": "FAIL",
+  "start_time": "2026-11-06T14:38:47.945299",
+  "end_time": "2026-11-06T14:38:50.953402",
+  "duration_sec": 3.0080761999706738,
+  "total_steps": 3,
+  "passed_steps": 1,
+  "failed_steps": 1,
+  "steps": [
+    {
+      "step_number": 1,
+      "action": "navigate",
+      "description": "Open page",
+      "status": "PASS",
+      "duration_ms": 124.33479999890551,
+      "target_info": null,
+      "input_value": null,
+      "screenshot_path": null,
+      "error_message": null,
+      "assertion_details": null
+    },
+    {
+      "step_number": 2,
+      "action": "assert_title",
+      "description": "Assert wrong title (intentional FAIL)",
+      "status": "FAIL",
+      "duration_ms": 240.28699996415526,
+      "target_info": null,
+      "input_value": null,
+      "screenshot_path": "reports\\screenshots\\fail_65c4c326-c2ab-44fd-b98c-d62e69754d22_step_2.png",
+      "error_message": "Title assertion failed. Expected 'This Title Does Not Exist XYZ987', found 'AI Test Automation Sample Page'.",
+      "assertion_details": {
+        "expected": "This Title Does Not Exist XYZ987",
+        "actual": "AI Test Automation Sample Page",
+        "type": "assert_title"
+      }
+    },
+    {
+      "step_number": 3,
+      "action": "screenshot",
+      "description": "Screenshot",
+      "status": "SKIPPED",
+      "duration_ms": 0.0,
+      "target_info": null,
+      "input_value": null,
+      "screenshot_path": null,
+      "error_message": "Skipped due to earlier step failure.",
+      "assertion_details": null
+    }
+  ],
+  "error_message": "Title assertion failed. Expected 'This Title Does Not Exist XYZ987', found 'AI Test Automation Sample Page'.",
+  "clarification_prompt": null,
+  "screenshots": [
+    "reports\\screenshots\\fail_65c4c326-c2ab-44fd-b98c-d62e69754d22_step_2.png"
+  ],
+  "metadata": {}
+}
