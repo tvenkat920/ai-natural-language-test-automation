@@ -4,6 +4,9 @@
 
 [build.environment]
   PYTHON_VERSION = "3.11.9"
+  # Newer mise releases require GitHub artifact attestations for Python builds,
+  # which are not published for 3.11.9. Disable that check so install succeeds.
+  MISE_PYTHON_GITHUB_ATTESTATIONS = "false"
 
 [[headers]]
   for = "/*"
